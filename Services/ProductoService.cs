@@ -13,7 +13,7 @@ namespace Proyecto.SistemaVentas.Services
         private readonly HttpClient _httpClient;
         public ProductoService(HttpClient httpClient)
         {
-            httpClient = httpClient;
+            _httpClient = httpClient;
         }
 
         public async Task <IEnumerable<Producto>> GetAll()

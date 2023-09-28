@@ -1,36 +1,24 @@
 ﻿@page "/Producto"
 @using Models
 @using Services
-@inject IProductoService ProductosService
+@inject IProductoService ProductoService
 
 <MudText Typo="Typo.h3">Productos de la tienda</MudText>
 
 <MudGrid>
-    @foreach (var item in deptos)
+    @foreach (var item in productos)
     {
-        string Precio = "";
+        
         <MudItem xs="12" sm="10" md="6" lg="4">
             <MudCard>
                 <MudCardHeader Class="yellow Lighten-3">
                     <MudCardHeaderContent>
-                        <MudText Typo="Typo.h6">@item.Precio</MudText>
+                        <MudText Typo="Typo.h6">@item.Nombre</MudText>
                     </MudCardHeaderContent>
                 </MudCardHeader>
                 <MudCardContent>
-                  @*  @switch (item.Precio)*@
-                    {
-                        case 1:
-                            Precio = "$12.99";
-                            break;
-                        case 2:
-                            Precio = "$19.99";
-                            break;
-                        case 3:
-                            Precio = "$39.99";
-                            break;
-
-                    }
-                    <MudText Typo="Typo.body2">Precio: @Precio</MudText>
+                 
+                    <MudText Typo="Typo.body2">Precio: @item.Precio</MudText>
                 </MudCardContent>
                 <MudCardActions>
                     <MudButton Variant="Variant.Text" Color="Color.Primary">Descripcion</MudButton>
@@ -44,9 +32,9 @@
 </MudGrid>
 
 @code {
-    IEnumerable<Producto> deptos = new List<Producto>();
+    IEnumerable<Producto> productos = new List<Producto>();
     protected override async Task OnInitializedAsync()
     {
-        deptos = await ProductosService.GetAll();
+        productos = await ProductoService.GetAll();
     }
 }
